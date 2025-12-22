@@ -1,0 +1,401 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wheat: <http://example.org/wheat#> .
+
+# Core classes
+wheat:Disease a rdfs:Class .
+wheat:Symptom a rdfs:Class .
+wheat:Treatment a rdfs:Class .
+wheat:Pathogen a rdfs:Class .
+wheat:Condition a rdfs:Class .
+wheat:PlantPart a rdfs:Class .
+
+# Properties
+wheat:hasSymptom a rdf:Property ;
+    rdfs:domain wheat:Disease ;
+    rdfs:range wheat:Symptom .
+
+wheat:hasTreatment a rdf:Property ;
+    rdfs:domain wheat:Disease ;
+    rdfs:range wheat:Treatment .
+
+wheat:causedBy a rdf:Property ;
+    rdfs:domain wheat:Disease ;
+    rdfs:range wheat:Pathogen .
+
+wheat:developsUnder a rdf:Property ;
+    rdfs:domain wheat:Disease ;
+    rdfs:range wheat:Condition .
+
+wheat:affectsPlantPart a rdf:Property ;
+    rdfs:domain wheat:Disease ;
+    rdfs:range wheat:PlantPart .
+
+wheat:hasNote a rdf:Property ;
+    rdfs:domain wheat:Disease ;
+    rdfs:range rdfs:Literal .
+
+
+wheat:Leaf_Rust_Brown_Rust a wheat:Disease ;
+    rdfs:label "Leaf Rust (Brown Rust)" ;
+    rdfs:label "Leaf Rust" ;
+    wheat:causedBy wheat:Puccinia_recondita ;
+    wheat:hasSymptom wheat:Leaf_Rust_Brown_Rust_Symptom ;
+    wheat:developsUnder wheat:Leaf_Rust_Brown_Rust_Condition ;
+    wheat:hasNote "Hosts/Distribution: Leaf rust can affect wheat, triticale and many other related grasses. The disease is found w.herever temperate cereals are grown. The alternate hosts are Thalictrum, Isopryum, Anemonella, and Anchusa spp. Importance: Severe early infections can cause significant yield losses, mainly by reducing the number of kernels per spike, test weights, and kernel quality." .
+
+wheat:Puccinia_recondita a wheat:Pathogen ; rdfs:label "Puccinia recondita" .
+
+wheat:Leaf_Rust_Brown_Rust_Symptom a wheat:Symptom ; rdfs:label "The pustules are circular or slightly elliptical, smaller than those of stem rust, usually do not coalesce, and contain masses of orange to orange-brown urediospores. Infection sites primarily are found on the upper surfaces of leaves and leaf sheaths (1 ), and occasionally on the neck and awns." .
+
+wheat:Leaf_Rust_Brown_Rust_Condition a wheat:Condition ; rdfs:label "Primary infections usually are light and develop from wind-borne urediospores that may have travelled long distances. The disease can develop rapidly when free moisture is available and temperatures are near 20°C. Successive generations of urediospores can be produced every 10-1 4 days if conditions are favorable. As plants mature or when environmental conditions are not favorable, masses of black teliospores may become evident (2)." .
+
+wheat:Stem_Rust_Black_Rust a wheat:Disease ;
+    rdfs:label "Stem Rust (Black Rust)" ;
+    rdfs:label "Stem Rust" ;
+    wheat:causedBy wheat:Puccinia_graminis_f_sp_rritici ;
+    wheat:hasSymptom wheat:Stem_Rust_Black_Rust_Symptom ;
+    wheat:developsUnder wheat:Stem_Rust_Black_Rust_Condition ;
+    wheat:hasNote "Hosts/Distribution: Stem rust can affect wheat, barley, triticale, and many other related grasses; it is found wherever temperate cereals are grown. The alternate hosts are Berberis and Mahonia spp. Importance: If infection occurs during the early crop stages, the effects can be severe: reductions in tillering and losses in grain weight and quality. Under favorable conditions,,complete crop loss can occur." .
+
+wheat:Puccinia_graminis_f_sp_rritici a wheat:Pathogen ; rdfs:label "Puccinia graminis f .sp. rritici" .
+
+wheat:Stem_Rust_Black_Rust_Symptom a wheat:Symptom ; rdfs:label "Pustules (containing masses of urediospores) are dark reddish brown, and may occur on both sides of the leaves, on the stems, and on the spikes (3). With light infections the pustules are usually separate and scattered, but with heavy infections they may coalesce. Prior to pustule formation, \"flecks\" may appear. Before the spore masses break through the epidermis, the infection sites feel rough to the touch; as the spore masses break through, the surface tissues take on a ragged and torn appearance." .
+
+wheat:Stem_Rust_Black_Rust_Condition a wheat:Condition ; rdfs:label "Primary infections are usually light and develop from wind-borne urediospores that may have travelled long distances. The disease can develop rapidly when free moisture (rain or dew) and moderate temperatures prevail. If temperatures average about 20°C or more, the first generation of urediospores will be produced in 10-1 5 days. As plants mature, masses of black teliospores may be produced." .
+
+wheat:Stripe_Rust_Yellow_Rust a wheat:Disease ;
+    rdfs:label "Stripe Rust (Yellow Rust)" ;
+    rdfs:label "Stripe Rust" ;
+    wheat:causedBy wheat:Puccinia_striiformis ;
+    wheat:hasSymptom wheat:Stripe_Rust_Yellow_Rust_Symptom ;
+    wheat:developsUnder wheat:Stripe_Rust_Yellow_Rust_Condition ;
+    wheat:hasNote "Hosts/Distribution: Stripe rust can attack wheat, barley, triticale, and many other related grasses. The disease is found in all highland and/or temperate areas where cereals are grown. No alternate host is known. Importance: Severe infections can cause yield losses, mainly by reducing the number of kernels per spike, test weights, and kernel quality." .
+
+wheat:Puccinia_striiformis a wheat:Pathogen ; rdfs:label "Puccinia striiformis" .
+
+wheat:Stripe_Rust_Yellow_Rust_Symptom a wheat:Symptom ; rdfs:label "The pustules of stripe rust, which. contain yellow to orange-yellow urediospores, usually form narrow stripes on the leaves (4). Pustules also can be found on leaf sheaths, necks, and glumes (5)." .
+
+wheat:Stripe_Rust_Yellow_Rust_Condition a wheat:Condition ; rdfs:label "Primary infections are caused by wind-borne urediospores that may have travelled long distances. The disease may develop rapidly when free moisture (rain or dew) occurs and temperatures range between 1 0-20°C. At temperatures above 25OC, the production of urediospores is reduced or ceases and black teliospores are often produced (6)." .
+
+wheat:Common_and_Dwarf_Bunt_Stinking_Smut a wheat:Disease ;
+    rdfs:label "Common and Dwarf Bunt (Stinking Smut)" ;
+    rdfs:label "Common and Dwarf Bunt" ;
+    wheat:causedBy wheat:Tilletia_caries_T_foetida_T_controversa ;
+    wheat:hasSymptom wheat:Common_and_Dwarf_Bunt_Stinking_Smut_Symptom ;
+    wheat:developsUnder wheat:Common_and_Dwarf_Bunt_Stinking_Smut_Condition ;
+    wheat:hasNote "Hosts/Distribution: Wheat and (less commonly). triticale are affected by these diseases, as are several other related grasses. Common and dwarf bunts can occur worldwide. Both are limited to temperate climates; dwarf bunt occurs in areas having prolonged snow cover. Importance: Considerable yield losses can occur when susceptible cultivars are grown or chemical seed treatments are not used." .
+
+wheat:Tilletia_caries_T_foetida_T_controversa a wheat:Pathogen ; rdfs:label "Tilletia caries, T. foetida, T. controversa" .
+
+wheat:Common_and_Dwarf_Bunt_Stinking_Smut_Symptom a wheat:Symptom ; rdfs:label "The main symptoms caused by these three species are fungal structures called \"bunt balls,\" which resemble kernels but are completely filled with black teliospores. The bunt balls of common bunt, caused by T. caries and T. foetida, are about the same size and shape as the kernels they replace (7); those of dwarf bunt, caused by T. controversa, are more nearly spherical (8). When bunt balls are crushed, they give off a fetid or fishy odor. Infected spikes tend to be bluish green in color (or darker), and the glumes tend to spread apart slightly; the bunt balls often become visible after the soft dough stage (9, 10; page 11 ). A slight reduction in plant height is typical of common bunt, while a pronounced reduction in height is typical of dwarf bunt." .
+
+wheat:Common_and_Dwarf_Bunt_Stinking_Smut_Condition a wheat:Condition ; rdfs:label "Spores lying dormant in the soil or on seed germinate and infect emerging seedlings. Infection is favored by cool temperatures during germination. The disease develops systemically, with visible symptoms appearing after heading. (continued)" .
+
+wheat:Karnal_Bunt_Partial_Bunt a wheat:Disease ;
+    rdfs:label "Karnal Bunt (Partial Bunt)" ;
+    rdfs:label "Karnal Bunt" ;
+    wheat:causedBy wheat:Tilletia_indica_sy_n_Neovossia_indica ;
+    wheat:hasSymptom wheat:Karnal_Bunt_Partial_Bunt_Symptom ;
+    wheat:developsUnder wheat:Karnal_Bunt_Partial_Bunt_Condition ;
+    wheat:hasNote "Hosts/Distribution: Karnal bunt can affect wheat, triticale, rye, and several other related grasses, but not barley. The disease is endemic in the Asian Subcontinent and now in Mexico. Importance: Karnal bunt is a relatively minor disease. Actual losses in yield are minimal, but the disease is on the quarantine lists of many countries and therefore of importance in world grain trade." .
+
+wheat:Tilletia_indica_sy_n_Neovossia_indica a wheat:Pathogen ; rdfs:label "Tilletia indica (sy n. Neovossia indica)" .
+
+wheat:Karnal_Bunt_Partial_Bunt_Symptom a wheat:Symptom ; rdfs:label "Karnal bunt is not easily detected prior to harvest, since it is usual for only a few kernels per spike to be affected by the disease. Following harvest, diseased kernels can be easily detected by visual inspection: a mass of black teliospores replaces a portion of the endosperm, and the pericarp may be intact or ruptured (1 1). Diseased kernels give off a fetid or fishy odor when crushed." .
+
+wheat:Karnal_Bunt_Partial_Bunt_Condition a wheat:Condition ; rdfs:label "Karnal bunt is a seed- or soil-borne, floral infecting disease. lnoculum (teliospores) on or near the soil surface germinates, producing sporidia, which are carried by wind to the floral structures. These sporidia in turn germinate and penetrate the glumes, rachis, or the ovary itself. The fungus enters the newly formed kernel and develops in the intercellular space between the endosperm and seed coat. The degree of disease establishment and development depends on environmental conditions from spike emergence through grain filling." .
+
+wheat:Loose_Smut a wheat:Disease ;
+    rdfs:label "Loose Smut" ;
+    wheat:causedBy wheat:Ustilago_tritici ;
+    wheat:hasSymptom wheat:Loose_Smut_Symptom ;
+    wheat:developsUnder wheat:Loose_Smut_Condition ;
+    wheat:hasNote "Hosts/Distribution: The disease can occur wherever wheat is grown. Importance: Yield losses depend on the number of spikes affected by the disease; incidence is usually less than one percent and rarely exceeds thirty percent of the spikes in any given location." .
+
+wheat:Ustilago_tritici a wheat:Pathogen ; rdfs:label "Ustilago tritici" .
+
+wheat:Loose_Smut_Symptom a wheat:Symptom ; rdfs:label "The entire inflorescence, except the rachis, is replaced by masses of smut spores (1 2). These black teliospores often are blown away by the wind, leaving only the bare rachis and remnants of other floral structures (1 3)." .
+
+wheat:Loose_Smut_Condition a wheat:Condition ; rdfs:label "Wind blown teliospores that land on the flowers of wheat plants can germinate and infect the developing embryo of the kernel. The mycelium of the loose smut fungus remains dormant in the embryonic tissues of the kernel until the kernel begins to germinate. The mycelium then develops along with the growing point of the plant, and at flowering time replaces the floral parts of the spike with masses of black spores. Infection and disease development are favored by cool, humid conditions, which prolong the flowering period of the host plant." .
+
+wheat:Flag_Smut a wheat:Disease ;
+    rdfs:label "Flag Smut" ;
+    wheat:causedBy wheat:Uroc_ystis_agrop_yri ;
+    wheat:hasSymptom wheat:Flag_Smut_Symptom ;
+    wheat:developsUnder wheat:Flag_Smut_Condition ;
+    wheat:hasNote "Hosts/Distribution: Bread wheats are the primary hosts of flag smut fungi, and the isolates attacking bread wheat tend to do so exclusively. There are few reports of flag smut on durum wheats and triticales. The disease is found in most winter wheat areas and in cool, fall-sown spring wheat areas. Importance: Flag smut generally is not an economically important disease, but where present, yield losses can range from trace amounts to moderate levels (when susceptible cultivars are grown)." .
+
+wheat:Uroc_ystis_agrop_yri a wheat:Pathogen ; rdfs:label "Uroc ystis agrop yri" .
+
+wheat:Flag_Smut_Symptom a wheat:Symptom ; rdfs:label "Masses of black teliospores are produced in narrow strips just beneath the epidermis of leaves, leaf sheaths and occasionally the culms. Diseased plants often are stunted, tiller profusely and the spikes may not emerge. A severe infection usually induces the leaves to roll, producing an onion-type leaf appearance. The epidermis of older diseased plants tends to shred, releasing the teliospores (1 4)." .
+
+wheat:Flag_Smut_Condition a wheat:Condition ; rdfs:label "Germinating kernels or very young seedlings are infected by germinating spores on the seed or in the soil. The disease continues to develop systemically, and the black subepidermal strips of teliospores become visible near heading. Infection is favored by low soil moisture and cool soil temperatures." .
+
+wheat:Powdery_Mildew a wheat:Disease ;
+    rdfs:label "Powdery Mildew" ;
+    wheat:causedBy wheat:Erysiphe_grarninis_f_sp_tritici ;
+    wheat:hasSymptom wheat:Powdery_Mildew_Symptom ;
+    wheat:developsUnder wheat:Powdery_Mildew_Condition ;
+    wheat:hasNote "Hosts/Distribution: The fungus has a high degree of host specificity. Isolates infecting wheat do so exclusively; the same appears to be true for isolates infecting barley, oats, and rye. Further specialization exists in the form of races. Powdery mildew occurs worldwide in cool, humid, and semiarid areas where cereals are grown. Importance: Powdery mildew can cause major yield losses if infection occurs early in the crop cycle and conditions remain favorable for development so that high infection levels are reached before heading." .
+
+wheat:Erysiphe_grarninis_f_sp_tritici a wheat:Pathogen ; rdfs:label "Erysiphe grarninis f. sp. tritici" .
+
+wheat:Powdery_Mildew_Symptom a wheat:Symptom ; rdfs:label "On all hosts, the first visible i symptoms of this disease are white to pale gray, fuzzy or powdery colonies of mycelia, and conidia on the upper surfaces of leaves and leaf sheaths (especially on lower leaves) (1 51, and sometimes on the spikes. Older fungal tissue is yellowish gray (16). This superficial fungal material can be rubbed off easily with the fingers. Host tissue beneath the fungal material becomes chlorotic or necrotic and, with severe infections, the leaves may die. Eventually, black spherical fruiting structures (cleistothecia) mav develoo in the mvcelia. and . can be seen without magnification. '" .
+
+wheat:Powdery_Mildew_Condition a wheat:Condition ; rdfs:label "The development of powdery mildew is favored by cool (1 5-22OC), cloudy, and humid (75-100% relative humidity) conditions." .
+
+wheat:Septoria_Diseases a wheat:Disease ;
+    rdfs:label "Septoria Diseases" ;
+    wheat:causedBy wheat:Septoria_Tritici_Blotch_Mycosphaerella_graminicola_Septoria_tritici_Septoria_Nodorum_Blotch_Leptosphaeria_nodorum_S_nodorum_Septoria_Avenae_Blotch_Leptosphaeria_avenaria_f_sp_triticea_S_avenae_f_s_triticea ;
+    wheat:hasSymptom wheat:Septoria_Diseases_Symptom ;
+    wheat:developsUnder wheat:Septoria_Diseases_Condition ;
+    wheat:hasNote "Hosts/Distribution: These are primarily diseases of wheat, but other cereals are somewhat susceptible. The diseases are limited to temperate wheat-growing areas where cool and moist conditions prevail. Importance: Major losses can occur, through seed shrivelling and lower test weights, if these diseases reach severe levels prior to harvest." .
+
+wheat:Septoria_Tritici_Blotch_Mycosphaerella_graminicola_Septoria_tritici_Septoria_Nodorum_Blotch_Leptosphaeria_nodorum_S_nodorum_Septoria_Avenae_Blotch_Leptosphaeria_avenaria_f_sp_triticea_S_avenae_f_s_triticea a wheat:Pathogen ; rdfs:label "Septoria Tritici Blotch; Mycosphaerella graminicola (Septoria tritici); Septoria Nodorum Blotch; Leptosphaeria nodorum (S. nodorum); Septoria Avenae Blotch; Leptosphaeria avenaria f .sp. triticea; (S. avenae; f.s~, triticea)" .
+
+wheat:Septoria_Diseases_Symptom a wheat:Symptom ; rdfs:label "Initial infection sites tend to be irregular in shape, oval to elongated chlorotic spots or lesions. As these sites expand, the centers of the lesions become pale, straw colored, and slightly necrotic, often with numerous small black dots (pycnidia) (1 7). The lesions of septoria tritici blotch tend to be linear and restricted laterally (1 81, while those of septoria nodorum blotch (1 9; page 23) and septoria avenae blotch are more lens shaped. All above ground plant parts can be affected. Light infection produces only scattered lesions, but heavy infection can kill leaves, spikes (20 is S. nodorum; page 231, or even the entire plant. Identification of species in the field can be difficult, and microscopic examination is often necessary. (continued)" .
+
+wheat:Septoria_Diseases_Condition a wheat:Condition ; rdfs:label "Initial infections tend to be on the lower leaves, progressing to the upper leaves and spikes if environmental conditions remain favorable. Cool temperatures (lo0-1 5OC) and prolonged wet, cloudy weather favors the development of these diseases." .
+
+wheat:Helminthosporium_Leaf_Blotch_Spot_Blotch a wheat:Disease ;
+    rdfs:label "Helminthosporium Leaf Blotch (Spot Blotch)" ;
+    rdfs:label "Helminthosporium Leaf Blotch" ;
+    wheat:causedBy wheat:Cochliobolus_sativus_Helminthosporium_sativum_Syn_Bipolaris_sorokiniana_Drechslera_sorokiniana ;
+    wheat:hasSymptom wheat:Helminthosporium_Leaf_Blotch_Spot_Blotch_Symptom ;
+    wheat:developsUnder wheat:Helminthosporium_Leaf_Blotch_Spot_Blotch_Condition ;
+    wheat:hasNote "Hosts/Distribution: Spot blotch affects wheat, triticale, barley, and most grasses. It is found worldwide, but is especially prevalent in more humid and higher rainfall areas. Importance: If infection occurs early in the crop cycle and conditions remain favorable for development, complete defoliation is possible; major reductions in yield and severely shrivelled kernels will then result." .
+
+wheat:Cochliobolus_sativus_Helminthosporium_sativum_Syn_Bipolaris_sorokiniana_Drechslera_sorokiniana a wheat:Pathogen ; rdfs:label "Cochliobolus sativus; (Helminthosporium sativum); Syn. Bipolaris sorokiniana, Drechslera sorokiniana" .
+
+wheat:Helminthosporium_Leaf_Blotch_Spot_Blotch_Symptom a wheat:Symptom ; rdfs:label "Lesions caused by this disease are elongated to oval in shape and are generally a dark brown color. As lesions mature, the centers often turn a light brown to tan color, surrounded by an irregular dark brown ring (21 on leaf; 22 on spike)." .
+
+wheat:Helminthosporium_Leaf_Blotch_Spot_Blotch_Condition a wheat:Condition ; rdfs:label "Primary infections tend to be on the lower leaves, beginning as chlorotic flecks or spots. These infection sites enlarge, turn dark brown, and often coalesce. When the disease is severe, affected leaves or leaf sheaths may die prematurely." .
+
+wheat:Tan_Spot_Yellow_Leaf_Spot_or_Blotch a wheat:Disease ;
+    rdfs:label "Tan Spot (Yellow Leaf Spot or Blotch)" ;
+    rdfs:label "Tan Spot" ;
+    wheat:causedBy wheat:Pyrenophora_trichostorna_fHelminthhosporium_tritici_repentis_S_y_n_P_tritici_repentis_Drechslera_tritici_repentis ;
+    wheat:hasSymptom wheat:Tan_Spot_Yellow_Leaf_Spot_or_Blotch_Symptom ;
+    wheat:developsUnder wheat:Tan_Spot_Yellow_Leaf_Spot_or_Blotch_Condition ;
+    wheat:hasNote "Hosts/Distribution: Tan spot can affect wheat and several related grasses; triticale, barley, and rye are less frequently affected. The disease is found in the major temperate wheat -growing areas. Importance: When severe, tan spot can cause premature death of the leaves, thereby reducing yield by lowering test weights and producing a high degree of kernel shrivelling. This disease has become more important with the increased adoption of minimum and/or no-till agronomic practices, which leave crop debris in place." .
+
+wheat:Pyrenophora_trichostorna_fHelminthhosporium_tritici_repentis_S_y_n_P_tritici_repentis_Drechslera_tritici_repentis a wheat:Pathogen ; rdfs:label "Pyrenophora trichostorna; fHelminthhosporium tritici-repentis); S y n. P. tritici-repentis, Drechslera tritici -repentis" .
+
+wheat:Tan_Spot_Yellow_Leaf_Spot_or_Blotch_Symptom a wheat:Symptom ; rdfs:label "At first, lesions appear as tan to brown flecks, which expand into large, irregular, oval- or lens-shaped tan blotches with a yellow or chlorotic margin (23). As these spots coalesce, large blotches are formed. The development of a dark brown to black spot in the center of the lesion is characteristic of the disease. As the disease progresses, entire leaves, spikes, and even whole plants may be killed." .
+
+wheat:Tan_Spot_Yellow_Leaf_Spot_or_Blotch_Condition a wheat:Condition ; rdfs:label "Initial infections come from diseased crop debris in the soil, or from diseased grass hosts. Usually the lower leaves are infected first, and the disease progresses to the upper leaves and leaf sheaths if conditions are favorable. This disease develops over a wide range of temperatures and is favored by long periods (1 8 hours or more) of dew or rain." .
+
+wheat:Alternaria_Leaf_Blight a wheat:Disease ;
+    rdfs:label "Alternaria Leaf Blight" ;
+    wheat:causedBy wheat:Alternaria_triticina ;
+    wheat:hasSymptom wheat:Alternaria_Leaf_Blight_Symptom ;
+    wheat:developsUnder wheat:Alternaria_Leaf_Blight_Condition ;
+    wheat:hasNote "Hosts/Distribution: Bread wheat and durum wheat, as well as several related grasses, are the primary hosts. The disease is common in the eastern and central areas of the Asian Subcontinent. Importance: Alternaria leaf blight can be very severe if environmental conditions are favorable for disease development; major losses can result when susceptible cultivars are grown." .
+
+wheat:Alternaria_triticina a wheat:Pathogen ; rdfs:label "Alternaria triticina" .
+
+wheat:Alternaria_Leaf_Blight_Symptom a wheat:Symptom ; rdfs:label "Small, chlorotic, oval - or elliptical- shaped lesions appear and, as they enlarge, these lesions become irregular in shape. The chlorotic borders of the lesions may become diffuse and turn light to dark brown in color (24). Lesions are difficult to distinguish from those caused by Helrninthosporiurn spp. Infection usually starts on the lower leaves, but symptoms can be found on all plant parts." .
+
+wheat:Alternaria_Leaf_Blight_Condition a wheat:Condition ; rdfs:label "The fungus survives as conidia on seed or as mycelia within seed. Sporulation on lower leaves provides inoculum that can be dispersed by wind, leading to secondary spread of the disease. Seed -borne inoculum often results in spike infections late in the crop cycle. High humidity or irrigation, as well as warmer temperatures (20' to 25'C) favor infection and disease development." .
+
+wheat:Fusarium_Leaf_Blotch_Snow_Mold a wheat:Disease ;
+    rdfs:label "Fusarium. Leaf Blotch (Snow Mold)" ;
+    rdfs:label "Fusarium. Leaf Blotch" ;
+    wheat:causedBy wheat:Calonectria_nivalis_Fusarium_nivale ;
+    wheat:hasSymptom wheat:Fusarium_Leaf_Blotch_Snow_Mold_Symptom ;
+    wheat:developsUnder wheat:Fusarium_Leaf_Blotch_Snow_Mold_Condition ;
+    wheat:hasNote "Hosts/Distribution: Generally, the disease affects durum wheat and triticale more than bread wheat or rye; oats and barley appear to be immune. Reports indicate that the disease is restricted to East Africa, the highland areas of Mexico, the Andean region of South America, and parts of southern China. Importance: Severe disease development can cause complete defoliation, resulting in poor grain development, shrivelling, and low test weights (28)." .
+
+wheat:Calonectria_nivalis_Fusarium_nivale a wheat:Pathogen ; rdfs:label "Calonectria nivalis (Fusarium nivale)" .
+
+wheat:Fusarium_Leaf_Blotch_Snow_Mold_Symptom a wheat:Symptom ; rdfs:label "The blotching caused by this organism becomes evident on leaves at about late-joint to early-boot growth stage. Young lesions occur as oval to elliptical, greyish green mottled areas, usually located where the leaf bends (25). The lesions enlarge rapidly, developing into large, \"eyespot\" blotches with bleached or light grey centers; the leaves tend to split or shred, beginning at the centers of the lesions (26). The fungus also can cause seedling blight, foot rot, head scab (27) and, in winter cereals, pink snow mold." .
+
+wheat:Fusarium_Leaf_Blotch_Snow_Mold_Condition a wheat:Condition ; rdfs:label "Spores are produced on crop debris left on or near the soil surface. These spores are transmitted to leaves by the wind or by splashing rain. Disease development is favored by cool, moist weather." .
+
+wheat:Scab_Head_Blight a wheat:Disease ;
+    rdfs:label "Scab (Head Blight)" ;
+    rdfs:label "Scab" ;
+    wheat:causedBy wheat:Fusarium_spp ;
+    wheat:hasSymptom wheat:Scab_Head_Blight_Symptom ;
+    wheat:developsUnder wheat:Scab_Head_Blight_Condition ;
+    wheat:hasNote "Hosts/Distribution: All small grain cereals may be affected by this disease. Fusarium spp. are present in nearly all soils and crop residues. Importance: Severe levels of infection can cause yield losses of more than 50% and significant reductions in grain quality. Kernels from diseased spikes are often shrivelled. Harvested grain containing more than 5% infected kernels can contain enough toxin to be harmful to humans and animals." .
+
+wheat:Fusarium_spp a wheat:Pathogen ; rdfs:label "Fusarium spp." .
+
+wheat:Scab_Head_Blight_Symptom a wheat:Symptom ; rdfs:label "lnfected florets (especially the outer glumes) become slightly darkened and oily in appearance (29). Conidiospores are produced in sporodochia, which gives the spike a bright pinkish color (30). lnfected kernels may be permeated with mycelia and the surface of the florets totally covered by white, matted mycelia." .
+
+wheat:Scab_Head_Blight_Condition a wheat:Condition ; rdfs:label "Several species of Fusarium can attack the spikes of small grain cereals; the ovaries are infected at anthesis, and infection is favored by warm and humid weather during and after heading. Temperatures between lo0 and 28OC are required for infection. Once primary infection has occurred, the disease can spread from floret to floret by mycelial growth through the spike structure." .
+
+wheat:Ergot a wheat:Disease ;
+    rdfs:label "Ergot" ;
+    wheat:causedBy wheat:Claviceps_purpurea ;
+    wheat:hasSymptom wheat:Ergot_Symptom ;
+    wheat:developsUnder wheat:Ergot_Condition ;
+    wheat:hasNote "Hosts/Distribution: Ergot is found in all small grain cereal crops, especially if sterility occurs for some reason (e.g., frost). Sterile florets tend to open and thus become more liable to infection. The disease is more prevalent in cool, humid climates. Importance: Yield losses tend to be small, but losses due to discounted grain quality can be significant and occur worldwide." .
+
+wheat:Claviceps_purpurea a wheat:Pathogen ; rdfs:label "Claviceps purpurea" .
+
+wheat:Ergot_Symptom a wheat:Symptom ; rdfs:label "At flowering, infected florets produce a yellowish, sticky, sweet exudate (containing conidia) that is visible on the glumes. As the spike matures, kernels of infected florets are replaced by brown to purplish black fungal structures (sclerotia or \"ergot bodies \") (31 ). These ergot bodies can reach 20 mm in length (32)." .
+
+wheat:Ergot_Condition a wheat:Condition ; rdfs:label "The primary infection originates from ascospores in fruiting bodies produced by sclerotia from the previous year's crop. Ascospores infect the florets, which then produce the sticky exudate containing conidia. Insects are attracted to the sweet exudate, and carry conidia to healthy florets in the same spike or to adjacent spikes. Rainy or humid weather favors the production of exudate and spores. An ergot body develops in each infected floret; these fungal structures can survive in the soil from one season to the next, and under dry conditions they can remain viable for many years. Sclerotia require cold temperatures before they can germinate." .
+
+wheat:Black_Point a wheat:Disease ;
+    rdfs:label "Black Point" ;
+    wheat:causedBy wheat:Alternaria_Helminthosporium_and_Fusarium_s_pp ;
+    wheat:hasSymptom wheat:Black_Point_Symptom ;
+    wheat:developsUnder wheat:Black_Point_Condition ;
+    wheat:hasNote "Hosts/Distribution: Wheat is the principal host; triticale and several related grasses also can be affected. Distribution is worldwide, wherever small grain cereals are grown. Importance: Losses are due mainly to discounted prices paid for discolored grain; if Fusarium or Helminthosporium spp. are involved, the viability of the seed also may be reduced." .
+
+wheat:Alternaria_Helminthosporium_and_Fusarium_s_pp a wheat:Pathogen ; rdfs:label "Alternaria, Helminthosporium, and Fusarium s pp ." .
+
+wheat:Black_Point_Symptom a wheat:Symptom ; rdfs:label "The pericarps of maturing wheat kernels turn dark brown to black, with the discoloration usually restricted to the germ-end of the kernel (33; 34 is healthy seed). If caused by Alternaria spp., the dark color affects only the pericarp; if caused by Helminthosporium or Fusarium spp., the germ may be invaded and injured or killed. There are other fungi that can cause black point, but the three noted here are the most common." .
+
+wheat:Black_Point_Condition a wheat:Condition ; rdfs:label "Usually, kernels are infected by these fungi during the dough stage. If humid weather prevails for a few days to a week just prior to harvest, the incidence of infection will increase and black point will develop in many cultivars." .
+
+wheat:Downy_Mildew a wheat:Disease ;
+    rdfs:label "Downy Mildew" ;
+    wheat:causedBy wheat:Sclerophthora_rnacrospora_Sclerospora_rnacrospora ;
+    wheat:hasSymptom wheat:Downy_Mildew_Symptom ;
+    wheat:developsUnder wheat:Downy_Mildew_Condition ;
+    wheat:hasNote "Hosts/Distribution: The fungus has a broad host range, including small grain cereals, maize, sorghum, and most grasses. It may be found wherever soils become water -logged or are poorly drained. Importance: Small, localized epidemics can occur when conditions are favorable. There have been no reports of widespread and destructive epidemics." .
+
+wheat:Sclerophthora_rnacrospora_Sclerospora_rnacrospora a wheat:Pathogen ; rdfs:label "Sclerophthora rnacrospora (Sclerospora rnacrospora)" .
+
+wheat:Downy_Mildew_Symptom a wheat:Symptom ; rdfs:label "Diseased plants tiller profusely; they have short, erect, irregular, or crooked yellowish- green culms; and the leaves are thick, erect, and usually in whorls (35). Tillers die prematurely or never head. If formed, the heads may be branched, and some of the floral tissues grow into leaflike structures (36)." .
+
+wheat:Downy_Mildew_Condition a wheat:Condition ; rdfs:label "The disease in cereals is generally associated with water-logged or excessively irrigated fields. Development is enhanced if temperatures range between lo0 and 25OC. Infection may be initiated by inoculum in the soil, or from diseased weed hosts, and water must be present for infection to occur. Symptoms are most obvious during the tilleringlstem elongation growth stages of the host plant." .
+
+wheat:Take_All a wheat:Disease ;
+    rdfs:label "Take-All" ;
+    wheat:causedBy wheat:Gaeumannomyces_graminis_f_sp_tritici_Syn_Ophiobolus_grarninis ;
+    wheat:hasSymptom wheat:Take_All_Symptom ;
+    wheat:developsUnder wheat:Take_All_Condition ;
+    wheat:hasNote "Hosts/Distribution: The take -all fungus displays. a degree of specialization for wheat, triticale and several related grasses. The disease appears to be restricted to temperate wheat -growing areas. Importance: Take-all is widespread in monocropped areas and has been known to cause considerable yield losses in winter wheat and fall- sown spring wheat areas, especially where liming or minimum tillage is practiced." .
+
+wheat:Gaeumannomyces_graminis_f_sp_tritici_Syn_Ophiobolus_grarninis a wheat:Pathogen ; rdfs:label "Gaeumannomyces graminis f, sp. tritici; Syn. Ophiobolus grarninis" .
+
+wheat:Take_All_Symptom a wheat:Symptom ; rdfs:label "This fungus causes rotting of the roots and lower stems. Basal stem and leaf sheath tissues, as well as roots, may turn a shiny black color (37). When examined with a hand lens (10x1, dark fungal hyphae may often be found on the subcrown internode beneath the old leaf sheaths. Coarse, black runner hyphae are conspicuous on roots. Severe disease development is indicated by stunted plants with whitened stems and spikes (38, page 43). When infection occurs early in the crop cycle, the number of tillers is often reduced and spikes are often sterile." .
+
+wheat:Take_All_Condition a wheat:Condition ; rdfs:label "The fungus persists on crop debris in the soil. Initial infections come from contact with hyphae or ascospores in the soil. Infection can occur throughout the crop cycle, but is favored by cool (12-18OC) soil temperatures and alkaline or nutrient deficient soils. Nitrate also appears to enhance disease development. Infections of the roots occurring in the fall and early spring generally progress to the crown and lower stem tissues; infections occurring later in the crop cycle cause less damage since they usually are confined to the roots. (continued)" .
+
+wheat:Eyespot_Straw_breaker a wheat:Disease ;
+    rdfs:label "Eyespot (Straw breaker)" ;
+    rdfs:label "Eyespot" ;
+    wheat:causedBy wheat:Pseudocercosporella_herpotrichoides_Sy_n_Cercosporella_herpotrichoides ;
+    wheat:hasSymptom wheat:Eyespot_Straw_breaker_Symptom ;
+    wheat:developsUnder wheat:Eyespot_Straw_breaker_Condition ;
+    wheat:hasNote "Hosts/Distribution: Wheat, triticale, rye, oats, and other related grasses can be affected by the disease, with wheat being the most susceptible; winter wheat and fall-sown spring wheat are more frequently damaged. Eyespot occurs in cool, moist climates where fall-sown cereals predominate. Importance: Eyespot may kill individual tillers or even whole plants. More commonly, yield losses result from reduced kernel size and number, and from lodging." .
+
+wheat:Pseudocercosporella_herpotrichoides_Sy_n_Cercosporella_herpotrichoides a wheat:Pathogen ; rdfs:label "Pseudocercosporella herpotrichoides; Sy n . Cercosporella herpotrichoides" .
+
+wheat:Eyespot_Straw_breaker_Symptom a wheat:Symptom ; rdfs:label "The most obvious symptoms of this disease are the eye-shaped, elliptical lesions produced on the internodes of the lower stem (39). The lesions are bordered by dark brown to greenish brown rings, have straw-colored centers, and frequently develop on the leaf sheath at soil level. These lesions may coalesce and lose their distinct \"eye-spot\" appearance. When disease development is severe, the stem or culm may break near the ground or through the lesion where the stem is weakened (40). Symptoms do not appear on the roots." .
+
+wheat:Eyespot_Straw_breaker_Condition a wheat:Condition ; rdfs:label "Primary infection occurs from conidia or mycelia produced on crop debris on or near the soil surface; contact with the developing coleoptile or basal areas of young culms is required. The fungus is limited to the basal areas of the plant. Disease development is favored by cool, damp weather, and by high humidity at the soil level." .
+
+wheat:Sharp_Eyespot_and_Rhizoctonia_Root_Rot a wheat:Disease ;
+    rdfs:label "Sharp Eyespot and Rhizoctonia Root Rot" ;
+    wheat:causedBy wheat:Rhizoctonia_solani ;
+    wheat:hasSymptom wheat:Sharp_Eyespot_and_Rhizoctonia_Root_Rot_Symptom ;
+    wheat:developsUnder wheat:Sharp_Eyespot_and_Rhizoctonia_Root_Rot_Condition ;
+    wheat:hasNote "Hosts/Distribution: Rhizoctonia solani has perhaps the widest host range of any pathogen, attacking most cultivated crops; virtually all members of the Graminae family are susceptible. It is a ubiquitous fungus, present almost everywhere in soil and crop debris. Importance: The disease is usually more severe in fields that are continuously sown to cereals, especially winter wheat. However, no major or widespread epidemics have been reported." .
+
+wheat:Rhizoctonia_solani a wheat:Pathogen ; rdfs:label "Rhizoctonia solani" .
+
+wheat:Sharp_Eyespot_and_Rhizoctonia_Root_Rot_Symptom a wheat:Symptom ; rdfs:label "The primary symptoms of sharp eyespot are the lesions that develop on basal leaf sheaths; these lesions are similar to those caused by Pseudocercosporella herpotrichoides (eyespot). Sharp eyespot lesions are more superficial and more sharply outlined than those typical of eyespot. The margins are dark brown with pale, straw-colored centers (41 ). The mycelia often present in the centers of lesions are easily removed by rubbing. Roots can also be affected, usually becoming brown in color and reduced in number. The disease can cause stunting and a reduction in the number of tillers." .
+
+wheat:Sharp_Eyespot_and_Rhizoctonia_Root_Rot_Condition a wheat:Condition ; rdfs:label "Infection is highly dependent upon environmental conditions. Disease development is favored by dry, sandy soils, cool temperatures, and high humidity. The fungus persists in soil and in crop debris, and invades root and crown tissues." .
+
+wheat:Common_Root_Rot_Foot_Rot_and_Crown_Rot a wheat:Disease ;
+    rdfs:label "Common Root Rot, Foot Rot, and Crown Rot" ;
+    wheat:causedBy wheat:Helminthosporium_Fusarium_and_Pythiurn_spp ;
+    wheat:hasSymptom wheat:Common_Root_Rot_Foot_Rot_and_Crown_Rot_Symptom ;
+    wheat:developsUnder wheat:Common_Root_Rot_Foot_Rot_and_Crown_Rot_Condition ;
+    wheat:hasNote "Hosts/Distribution: These diseases affect all major small grain cereals grown in the temperate regions of the world. Importance: Major epidemics have not been reported. However, localized losses can result from thinned stands, a decrease in the number of tillers, and from reductions in head size and test weights." .
+
+wheat:Helminthosporium_Fusarium_and_Pythiurn_spp a wheat:Pathogen ; rdfs:label "Helminthosporium, Fusarium, and Pythiurn spp." .
+
+wheat:Common_Root_Rot_Foot_Rot_and_Crown_Rot_Symptom a wheat:Symptom ; rdfs:label "These fungi produce a darkening or browning of the root, crown, and basal culm tissues. Individual plants or groups of plants may lodge. White spikes often are visible just prior to normal physiological maturity (42). lnfection early in the crop development can cause pre- or post- emergence \"damping off\" of seedlings (43). Since each fungus can attack a different plant part at a different growth stage, positive field identification of the causal agent is difficult." .
+
+wheat:Common_Root_Rot_Foot_Rot_and_Crown_Rot_Condition a wheat:Condition ; rdfs:label "The roots or crown tissues are infected by conidia or mycelia present on crop debris, Infection by and development of common root rot (Helminthosporium spp. ) is favored by warm, dry soils when the plants are under stress. The root, foot, and crown rots caused by Fusarium spp. are generally favored by cooler, moist soils, and wet soils favor Pythium spp." .
+
+wheat:Sclerotium_Wilt_Southern_Blight a wheat:Disease ;
+    rdfs:label "Sclerotium Wilt (Southern Blight)" ;
+    rdfs:label "Sclerotium Wilt" ;
+    wheat:causedBy wheat:Corticum_rolfsii_Sclerotium_rolfsii ;
+    wheat:hasSymptom wheat:Sclerotium_Wilt_Southern_Blight_Symptom ;
+    wheat:developsUnder wheat:Sclerotium_Wilt_Southern_Blight_Condition ;
+    wheat:hasNote "Hosts/Distribution: Most cereals and grasses, plus many broad -leaf plant species are susceptible, and the fungus is widespread in tropical and subtropical environments. Importance: The disease is seldom a problem in traditional wheat -growing areas." .
+
+wheat:Corticum_rolfsii_Sclerotium_rolfsii a wheat:Pathogen ; rdfs:label "Corticum rolfsii (Sclerotium rolfsii)" .
+
+wheat:Sclerotium_Wilt_Southern_Blight_Symptom a wheat:Symptom ; rdfs:label "If infection occurs early in the crop cycle, pre - or post-emergence \"damping off\" of seedlings can result. Diseased tissues will frequently have white, fluffy fungal mycelia on the surface (441, which often permeate the soil surrounding the plant. Subsequent disease development results in rotted culms, crowns, and roots, and the eventual death of the plant; this leads to the appearance of \"white heads\" or spikes in the green crop (45). Sclerotia are commonly found on the crown tissues, culms, or near the soil surface (46). Young sclerotia are whitish and turn brown to dark brown with age." .
+
+wheat:Sclerotium_Wilt_Southern_Blight_Condition a wheat:Condition ; rdfs:label "Sclerotium rolfsii can attack the plant at any stage of development. Fungal mycelia on crop debris or sclerotia serve as primary inoculum. Infection and disease development are favored by warm (20°C +) temperatures, excessive moisture, and acid soils." .
+
+wheat:Black_Molds_Sooty_Molds a wheat:Disease ;
+    rdfs:label "Black Molds (Sooty Molds)" ;
+    rdfs:label "Black Molds" ;
+    wheat:causedBy wheat:Alrernaria_Cladosporium_Stemphylium_Epicoccum_and_other_species ;
+    wheat:hasSymptom wheat:Black_Molds_Sooty_Molds_Symptom ;
+    wheat:developsUnder wheat:Black_Molds_Sooty_Molds_Condition ;
+    wheat:hasNote "Hosts/Distribution: Black molds affect any kind of dead or dying plant tissue; distribution is worldwide. Importance: Black molds generally are not economically important. Under humid or rainy conditions, the fungi can invade mature kernels, causing discoloration, black point, or smudge. Bacterial Diseases Bacterial plant pathogens are small unicellular rods . from 1 to 3 pm in length. They do not have a well-defined nucleus, nor a nuclear membrane. Bacteria are spread by insects, air currents, splashing rain, and by mechanical means. Free moisture usually is necessary for infection, and penetration of host tissue occurs through wounds or stomata1 openings. These pathogens invade the vascular system or intercellular spaces in host tissue, and necrosis results from toxins produced or enzymatic activity of the bacteria." .
+
+wheat:Alrernaria_Cladosporium_Stemphylium_Epicoccum_and_other_species a wheat:Pathogen ; rdfs:label "Alrernaria, Cladosporium, Stemphylium, Epicoccum; and other species" .
+
+wheat:Black_Molds_Sooty_Molds_Symptom a wheat:Symptom ; rdfs:label "The typical symptom is the blackened appearance of mature or dead spikes, caused by a superficial accumulation of mycelia and sporulating fungal tissue (47)." .
+
+wheat:Black_Molds_Sooty_Molds_Condition a wheat:Condition ; rdfs:label "When wet or humid weather occurs at or near crop maturation, or when plants are heavily infested with aphids, or when plants die prematurely, they may be invaded by one or more of these fungi. Technically, black molds do not constitute a disease, since the fungi are saprophytic and invade only dead or dying plant tissue." .
+
+wheat:Bacterial_Black_Chaff_and_Bacterial_Stripe a wheat:Disease ;
+    rdfs:label "Bacterial Black Chaff and Bacterial Stripe" ;
+    wheat:causedBy wheat:Xanthornonas_carnpestris_pv_translucens_Syn_X_translucens_X_translucens_f_sp_undulosa_X_campestris_pv_undulosa ;
+    wheat:hasSymptom wheat:Bacterial_Black_Chaff_and_Bacterial_Stripe_Symptom ;
+    wheat:developsUnder wheat:Bacterial_Black_Chaff_and_Bacterial_Stripe_Condition ;
+    wheat:hasNote "Hosts/Distribution: These diseases occur worldwide on all small grain cereals and many grasses. Importance: Black chaff and bacterial stripe rarely cause significant damage, even though symptoms often may be extensive." .
+
+wheat:Xanthornonas_carnpestris_pv_translucens_Syn_X_translucens_X_translucens_f_sp_undulosa_X_campestris_pv_undulosa a wheat:Pathogen ; rdfs:label "Xanthornonas carnpestris pv. translucens; Syn. X. translucens, X. translucens f.sp. undulosa,; X. campestris pv. undulosa" .
+
+wheat:Bacterial_Black_Chaff_and_Bacterial_Stripe_Symptom a wheat:Symptom ; rdfs:label "Black chaff and bacterial stripe are both caused by the same organism; the site and extent of the symptoms depends on the strain of the bacterium, the affected cultivar and environmental conditions. \"Bacterial black chaff\" occurs primarily on the glumes (48); \"bacterial stripe\" occurs primarily on the leaves and/or leaf sheaths (49). Initial symptoms are narrow chlorotic lesions or stripes that have a water- soaked appearance; droplets of sticky yellowish exudate may appear with extended periods of rain or dew (50). The exudate dries to form crusty droplets or a translucent film on the surface of affected tissues. The film may crack and give a scaly appearance. If infection occurs early in the crop cycle, the spike may be infected, resulting in sterility; when the disease is severe, entire leaves or spikes may be killed." .
+
+wheat:Bacterial_Black_Chaff_and_Bacterial_Stripe_Condition a wheat:Condition ; rdfs:label "The bacterium can be seed borne and persists on crop residues in the soil, tolerating warm as well as freezing temperatures. Free moisture is required for infection and spread of the disease. Infection occurs through stomata and broken epidermal tissue. The disease is spread by splashing rain, plant contact, and insects." .
+
+wheat:Basal_Glume_Rot_and_Bacterial_Leaf_Blight a wheat:Disease ;
+    rdfs:label "Basal Glume Rot and Bacterial Leaf Blight" ;
+    wheat:causedBy wheat:Pseudomonas_syringae_pv_atrofaciens_Syn_Pseudomonas_atrofaciens ;
+    wheat:hasSymptom wheat:Basal_Glume_Rot_and_Bacterial_Leaf_Blight_Symptom ;
+    wheat:developsUnder wheat:Basal_Glume_Rot_and_Bacterial_Leaf_Blight_Condition ;
+    wheat:hasNote "Hosts/Distribution: The disease can affect all small grain cereal crops; distribution is worldwide. i Importance: Basal glume rot usually is not economically important, but is frequently reported in humid cereal -growing areas." .
+
+wheat:Pseudomonas_syringae_pv_atrofaciens_Syn_Pseudomonas_atrofaciens a wheat:Pathogen ; rdfs:label "Pseudomonas syringae pv. atrofaciens; Syn. Pseudomonas atrofaciens" .
+
+wheat:Basal_Glume_Rot_and_Bacterial_Leaf_Blight_Symptom a wheat:Symptom ; rdfs:label "The leaves, culms, and spikes of v wheat and triticale can be infected. Infections begin as small, dark green, water-soaked lesions that turn dark brown to blackish in color. On the spikelets, lesions generally start at the base of the glume and may eventually extend over the entire glume (51 1. Diseased glumes have a translucent appearance when held toward the light. Dark brown to black discoloration occurs with age. The disease may spread to the rachis, and lesions may also develop on the kernels (52). Under wet or humid conditions, a whitish gray bacterial ooze may be present. Stem infections result in dark discoloration of the stem; leaf infections result in small, irregular, water-soaked lesions. Symptoms can be confused with those of other bacterial diseases, genetic melanism (false black chaff), septoria nodorum blotch (glume blotch), and frost damage." .
+
+wheat:Basal_Glume_Rot_and_Bacterial_Leaf_Blight_Condition a wheat:Condition ; rdfs:label "The pathogen survives on crop debris, as well as various grass hosts. It is disseminated by splashing rain or by insects, and can be seed borne. s" .
+
+wheat:Bacterial_Spike_Blight_Yellow_Ear_Rot a wheat:Disease ;
+    rdfs:label "Bacterial Spike Blight (Yellow Ear Rot)" ;
+    rdfs:label "Bacterial Spike Blight" ;
+    wheat:causedBy wheat:Corynebacterium_tritici ;
+    wheat:hasSymptom wheat:Bacterial_Spike_Blight_Yellow_Ear_Rot_Symptom ;
+    wheat:developsUnder wheat:Bacterial_Spike_Blight_Yellow_Ear_Rot_Condition ;
+    wheat:hasNote "Hosts/Distribution: Wheat is the only cultivated host, though some wild grasses are susceptible to attack. The disease is frequently reported in the Asian Subcontinent. Importance: Bacterial spike blight is not economically important. Viral Diseases Viruses are the smallest pathogens presented irl this field guide, and only one viral disease (BYD) is discussed. The infectious viral particle is called a virion, which is a stable, non-multiplying stage by which the virus is transferred from one plant to another. Viruses multiply in the host plant, and transmission may occur via several means: by insects and mites (especially sucking insects, such as aphids), by nematodes, by seed, by pollen, by fungi, by soil and mechanically. Viral diseases are often difficult to detect because infected hosts may not display visible symptoms, or symptoms may closely resemble those of various physiological disorders or genetic abnormalities. Identification can be facilitated by determining which vectors are present and the host range; in many cases, positive identification requires the use of an electron microscope and serological techniques." .
+
+wheat:Corynebacterium_tritici a wheat:Pathogen ; rdfs:label "Corynebacterium tritici" .
+
+wheat:Bacterial_Spike_Blight_Yellow_Ear_Rot_Symptom a wheat:Symptom ; rdfs:label "A yellow exudate on the spikes is indicative of bacterial spike blight. When dry, the exudate is white. Often the spikes and necks will emerge as a distorted, sticky mass (53). The early leaves may also be wrinkled or twisted. This bacteria is associated with the nematode Anguina tritici in some regions." .
+
+wheat:Bacterial_Spike_Blight_Yellow_Ear_Rot_Condition a wheat:Condition ; rdfs:label "The bacteria persists in organic material in the soil. It attacks wheat when it comes in contact with the plant apex within the leaf whorl, and this transmission is often facilitated by the nematode A. tritici." .
+
+wheat:Barley_Yellow_Dwarf a wheat:Disease ;
+    rdfs:label "Barley Yellow Dwarf" ;
+    wheat:causedBy wheat:Barley_yellow_dwarf_virus_BYDV ;
+    wheat:hasSymptom wheat:Barley_Yellow_Dwarf_Symptom ;
+    wheat:developsUnder wheat:Barley_Yellow_Dwarf_Condition ;
+    wheat:hasNote "Hosts/Distribution: The term barley yellow dwarf virus (BYDV) includes several related viruses that are all aphid transmitted. Over 20 species of aphids may act as vectors. BYD is probably the most widely distributed viral disease of cereals in the world. It attacks not only wheat, but also barley, triticale, oats, and many other grass species. Importance: Infections occurring early in the crop cycle can result in yield losses of more than 20%, and much larger losses have been recorded." .
+
+wheat:Barley_yellow_dwarf_virus_BYDV a wheat:Pathogen ; rdfs:label "Barley yellow dwarf virus (BYDV)" .
+
+wheat:Barley_Yellow_Dwarf_Symptom a wheat:Symptom ; rdfs:label "The symptoms of barley yellow dwarf (BYD) vary with the affected crop cultivar, the age of the plant at the time of infection, the strain of the virus, and environmental conditions. Symptoms often are masked by or confused with other problems. Affected plants show a yellowing (54) or reddening (on oats and some wheats) of leaves, stunting, an upright posture of thickened stiff leaves (551, reduced root growth, delayed (or no) heading, and a reduction in yield. The heads of affected plants tend to remain erect and become black and discolored during ripening due to colonization by saprophytic fungi." .
+
+wheat:Barley_Yellow_Dwarf_Condition a wheat:Condition ; rdfs:label "Temperatures of approximately 20°C are favorable for disease development and symptoms appear approximately 14 days after infection." .
