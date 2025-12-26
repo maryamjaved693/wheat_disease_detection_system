@@ -35,8 +35,22 @@ def run_pipeline(
     clip_label = "Healthy"
     clip_conf = 0.0
     all_scores = []
+    is_wheat = True
+    wheat_confidence = 0.0
 
     if image is not None:
+        # First, check if the image is wheat-related
+        is_wheat, wheat_confidence = clip_model.is_wheat_image(image)
+        
+        if not is_wheat:
+            # Return early with error flag if not wheat
+            return {
+                "error": "not_wheat",
+                "wheat_confidence": wheat_confidence,
+                "message": "The uploaded image does not appear to be wheat-related. Please upload an image of wheat leaves or plants."
+            }
+        
+        # Only proceed with disease prediction if image is wheat-related
         clip_label, clip_conf, all_scores = clip_model.predict(image)
 
     text_symptoms = extract_symptoms(symptom_text)
@@ -57,6 +71,8 @@ def run_pipeline(
         "text_symptoms": text_symptoms,
         "reasoning": reasoning_dict,
         "llm_explanation": explanation,
+        "is_wheat": is_wheat,
+        "wheat_confidence": wheat_confidence,
     }
 
 
@@ -123,55 +139,63 @@ def main():
             with st.spinner("🔄 Analyzing image and retrieving disease information..."):
                 result = run_pipeline(pil_image, symptom_text)
 
-            st.markdown("---")
-            st.markdown('<div class="diagnosis-box">', unsafe_allow_html=True)
-            
-            # Disease prediction
-            clip_label = result['clip_label']
-            clip_conf = result['clip_confidence']
-            
-            st.markdown(f"### 🔬 Predicted Disease: **{clip_label}**")
-            
-            # Get facts
-            reasoning = result["reasoning"]
-            facts = reasoning.get("facts", {})
-            disease_name = facts.get("disease_name", clip_label)
-            pathogen = facts.get("pathogen", "Unknown")
-            risk_level = reasoning.get("risk_level", "Unknown")
-            
-            # Key information in columns
-            col_info1, col_info2 = st.columns(2)
-            with col_info1:
-                st.markdown(f"**Pathogen:** {pathogen}")
-                st.markdown(f"**Risk Level:** {risk_level}")
-            with col_info2:
-                if facts.get("plant_parts"):
-                    st.markdown(f"**Affected Parts:** {', '.join(facts['plant_parts'][:2])}")
-            
-            st.markdown("</div>", unsafe_allow_html=True)
-            
-            # LLM Explanation in markdown
-            st.markdown("---")
-            st.markdown("### 📋 Diagnosis Report")
-            st.markdown(result["llm_explanation"])
-            
-            # Additional details in expander
-            with st.expander("🔍 View Technical Details"):
-                if result["clip_scores"]:
-                    st.markdown("**Top Predictions:**")
-                    top_scores = result["clip_scores"][:5]
-                    for disease, score in top_scores:
-                        st.progress(float(score), text=f"{disease}: {score:.1%}")
+            # Check if there's an error (non-wheat image)
+            if result.get("error") == "not_wheat":
+                st.markdown("---")
+                st.markdown('<div class="diagnosis-box">', unsafe_allow_html=True)
+                st.markdown("### 📋 Diagnosis Result")
+                st.markdown("**I can only answer queries about wheat images. Please upload an image of wheat leaves or plants for disease diagnosis.**")
+                st.markdown("</div>", unsafe_allow_html=True)
+            else:
+                st.markdown("---")
+                st.markdown('<div class="diagnosis-box">', unsafe_allow_html=True)
                 
-                if facts.get("symptoms"):
-                    st.markdown("**Symptoms from Knowledge Base:**")
-                    for symptom in facts.get("symptoms", [])[:3]:
-                        st.markdown(f"- {symptom[:200]}...")
+                # Disease prediction
+                clip_label = result['clip_label']
+                clip_conf = result['clip_confidence']
                 
-                if reasoning.get("explanation_trace"):
-                    st.markdown("**Reasoning Steps:**")
-                    for line in reasoning.get("explanation_trace", []):
-                        st.markdown(f"- {line}")
+                st.markdown(f"### 🔬 Predicted Disease: **{clip_label}**")
+                
+                # Get facts
+                reasoning = result["reasoning"]
+                facts = reasoning.get("facts", {})
+                disease_name = facts.get("disease_name", clip_label)
+                pathogen = facts.get("pathogen", "Unknown")
+                risk_level = reasoning.get("risk_level", "Unknown")
+                
+                # Key information in columns
+                col_info1, col_info2 = st.columns(2)
+                with col_info1:
+                    st.markdown(f"**Pathogen:** {pathogen}")
+                    st.markdown(f"**Risk Level:** {risk_level}")
+                with col_info2:
+                    if facts.get("plant_parts"):
+                        st.markdown(f"**Affected Parts:** {', '.join(facts['plant_parts'][:2])}")
+                
+                st.markdown("</div>", unsafe_allow_html=True)
+                
+                # LLM Explanation in markdown
+                st.markdown("---")
+                st.markdown("### 📋 Diagnosis Report")
+                st.markdown(result["llm_explanation"])
+                
+                # Additional details in expander
+                with st.expander("🔍 View Technical Details"):
+                    if result["clip_scores"]:
+                        st.markdown("**Top Predictions:**")
+                        top_scores = result["clip_scores"][:5]
+                        for disease, score in top_scores:
+                            st.progress(float(score), text=f"{disease}: {score:.1%}")
+                    
+                    if facts.get("symptoms"):
+                        st.markdown("**Symptoms from Knowledge Base:**")
+                        for symptom in facts.get("symptoms", [])[:3]:
+                            st.markdown(f"- {symptom[:200]}...")
+                    
+                    if reasoning.get("explanation_trace"):
+                        st.markdown("**Reasoning Steps:**")
+                        for line in reasoning.get("explanation_trace", []):
+                            st.markdown(f"- {line}")
 
 
 if __name__ == "__main__":
